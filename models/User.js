@@ -1,5 +1,6 @@
 const mongoose = require("mongoose")
-const { MongoGridFSChunkError } = require("mongoose/node_modules/mongodb")
+const { isEmail } = require("validator")
+
 
 const userSchema = new mongoose.Schema ({
     firstName: {
@@ -13,7 +14,8 @@ const userSchema = new mongoose.Schema ({
     email: {
         type: String, 
         required: [true, "Please enter a username"],
-        unique: true
+        unique: true,
+        validate: [isEmail, "Please enter a valid email"]
     },
     password: {
         type: String,

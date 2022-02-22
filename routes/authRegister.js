@@ -12,17 +12,29 @@ router.get("/", (req, res, next) => {
   res.status(200).render("register")
 });
 
-router.post("/", (req, res, next) => {
+const handleErrors = (err) => {
+    console.log(err.message, err.code)
+    let error = { firstName: "", lastName: "", email: "", password: ""}
+}
+
+router.post("/", async (req, res, next) => {
     const {firstName, lastName, email, password} = req.body
     const payload = req.body
     if(firstName && lastName && email && password) {
-        User.findOne({email: email})
-        .then((user) => {
-            console.log(user)
-        })
-        console.log("Hi")
+        const user = await User.findOne({email: email}).catch((error) => {
+            console.log(error)
+            res.status(200).render("register", payload)
+        }) // no user found
+        if (user == null) {
+
+        } else {
+            // user found 
+            if (email == user.email) {
+
+            }
+        }
     } else {
-        payload.errorMessage = "Enter values in all fields"
+        payload.errorMessage = "Error, user not created"
         res.status(200).render("register", payload)
     }
 
