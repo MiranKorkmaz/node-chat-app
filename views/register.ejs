@@ -1,0 +1,50 @@
+<%- include("partials/header.ejs") %>
+    <div class="registration-body">
+        <form method="POST" onSubmit={handleOnSubmit}>
+            <h2>Register</h2>
+            <input 
+                class="input" 
+                type="text" 
+                name="firstName" 
+                id="firstName" 
+                placeholder="Enter firstname"
+                required
+            />
+            <div class="line-box"><div class="line"></div></div>
+            <input 
+                class="input" 
+                type="text" 
+                name="lastName" 
+                id="lastName" 
+                placeholder="Enter lastname"
+                required
+            />
+            <div class="line-box"><div class="line"></div></div>
+            <input 
+                class="input" 
+                type="email" 
+                name="email" 
+                id="email" 
+                placeholder="Enter an email" 
+                required
+            />
+            <div class="line-box"><div class="line"></div></div>
+            <input 
+                class="input" 
+                type="password" 
+                name="password" 
+                id="password" 
+                placeholder="Choose a password"
+                required
+            />
+            <div class="line-box"><div class="line"></div></div>
+            <button type="submit" class="button">Register</button>
+            <br>
+        </form>
+    </div>
+    <script>
+        function handleOnSubmit(e) {
+            e.preventDefault()
+        }
+    </script>       
+<%- include("partials/footer.ejs") %>
