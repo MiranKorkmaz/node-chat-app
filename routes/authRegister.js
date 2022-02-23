@@ -22,7 +22,6 @@ router.post("/", async (req, res, next) => {
             res.status(200).render("register", payload)
         }) // no user found
         if (user == null) {
-
             User.create({firstName, lastName, email, password}).then((user) => {
                 req.session.user = user
                 return res.redirect("/")

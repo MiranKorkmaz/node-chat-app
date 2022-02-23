@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
 const { isEmail } = require("validator")
 const bcrypt = require("bcrypt")
+const express = require("express")
 
 const userSchema = new mongoose.Schema ({
     firstName: {
@@ -13,7 +14,7 @@ const userSchema = new mongoose.Schema ({
     },
     email: {
         type: String, 
-        required: [true, "Please enter a username"],
+        required: [true, "Please enter a email"],
         unique: true,
         validate: [isEmail, "Please enter a valid email"]
     },
@@ -38,6 +39,7 @@ userSchema.pre("save", async function (next) {
     this.password = await bcrypt.hash(this.password, salt)
     next();
 }) 
+
 
 const User = mongoose.model("User", userSchema)
 module.exports = User
