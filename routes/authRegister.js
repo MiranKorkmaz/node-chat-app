@@ -12,10 +12,6 @@ router.get("/", (req, res, next) => {
   res.status(200).render("register")
 });
 
-const handleErrors = (err) => {
-    console.log(err.message, err.code)
-    let error = { firstName: "", lastName: "", email: "", password: ""}
-}
 
 router.post("/", async (req, res, next) => {
     const {firstName, lastName, email, password} = req.body
@@ -27,11 +23,12 @@ router.post("/", async (req, res, next) => {
         }) // no user found
         if (user == null) {
 
+            User.create({firstName, lastName, email, password}).then((user) => {
+                req.session.user = user
+                return res.redirect("/")
+            })
         } else {
-            // user found 
-            if (email == user.email) {
-
-            }
+            res.status(200).render("register", payload)
         }
     } else {
         payload.errorMessage = "Error, user not created"

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 const { isEmail } = require("validator")
-
+const bcrypt = require("bcrypt")
 
 const userSchema = new mongoose.Schema ({
     firstName: {
@@ -26,7 +26,18 @@ const userSchema = new mongoose.Schema ({
         type: String,
         default: "/images/profilePicture.png"
     }
-})
+}, {timestamps: true})
+
+
+// creating a mongoose hook to fire a function after a new user has been saved to database 
+// pre saving --> fire function 
+// hash password so it doesnt show in mongodb database
+// a salt is a random string
+userSchema.pre("save", async function (next) {
+    const salt = await bcrypt.genSalt()
+    this.password = await bcrypt.hash(this.password, salt)
+    next();
+}) 
 
 const User = mongoose.model("User", userSchema)
 module.exports = User

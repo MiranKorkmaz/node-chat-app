@@ -4,6 +4,7 @@ const app = express()
 const PORT = 3000;
 const middlewear = require("./middlewear/middlewear")
 const mongoose = require("mongoose")
+const session = require("express-session")
 
 
 app.use(express.static("public"))
@@ -13,6 +14,13 @@ app.set("views", "views")
 // bodyParser middlewear 
 app.use(bodyParser. urlencoded({extended: false}))
 app.use(bodyParser.json())
+
+// sessions
+app.use(session({
+  secret: "chirp",
+  resave: true,
+  saveUninitialized: false
+}))
 
 // connect app to mongoose 
 mongoose.connect("mongodb://localhost/users", {
@@ -24,7 +32,8 @@ app.use("/login", authLogin)
 app.use("/register", authRegister)
 
 app.get("/", middlewear.reqLogin, (req, res, next) => {
-  res.status(200).render("index")
+  const loggedIn = req.session.user
+  res.status(200).render("index", {loggedIn})
 });
 
 app.listen(PORT, () => {
