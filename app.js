@@ -28,8 +28,10 @@ mongoose.connect("mongodb://localhost/users", {
 
 const authLogin = require("./routes/authLogin")
 const authRegister = require("./routes/authRegister")
+const authLogout = require("./routes/authLogout")
 app.use("/login", authLogin)
 app.use("/register", authRegister)
+app.use("/logout", authLogout)
 
 app.get("/", middlewear.reqLogin, (req, res, next) => {
   const loggedIn = req.session.user
