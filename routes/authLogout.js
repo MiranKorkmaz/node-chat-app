@@ -4,7 +4,6 @@ const router = express.Router()
 const bodyParser = require("body-parser")
 const User = require("../models/User");
 
-
 app.use(bodyParser. urlencoded({extended: false}))
 app.use(bodyParser.json())
 
