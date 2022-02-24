@@ -25,7 +25,7 @@ const userSchema = new mongoose.Schema ({
     },
     profilePic: {
         type: String,
-        default: "/images/profilePicture.png"
+        default: "/images/profilePicture.jpeg"
     }
 }, {timestamps: true})
 
