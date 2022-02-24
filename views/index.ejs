@@ -1,5 +1,29 @@
 <%- include("partials/header.ejs") %> 
 <%- include("partials/navbar.ejs") %> 
     <h2>Home Page</h2>
-<%- include("partials/functions.ejs") %> 
+    <div class="post-container">
+        <div class="image-container">
+            <a href="profile"><img src=<%= loggedIn.profilePic %> alt="Profile Picture for logged in user" id="bird"></a>
+        </div>
+        <div class="textarea-container">
+            <p><a href="profile"> <%= loggedIn.email %>   </a>  </p>
+            <textarea name="post" id="txt" cols="30" rows="2" maxlength="140" onclick=check() placeholder="What's on your mind?"></textarea>
+            <div id=warning></div>
+            <button id="submitButton">Post</button>
+        </div>
+        <div class="wrapper">
+        </div>
+    
+    </div>
+    <script>
+    function check() {
+        stringLength = document.getElementById('txt').value.length;
+        if (stringLength >= 140) {
+             document.getElementById('warning').innerText = "Maximum characters are 140"
+        } else {
+            document.getElementById('warning').innerText = ""
+        }
+    }
+    
+    </script>
 <%- include("partials/footer.ejs") %> 
