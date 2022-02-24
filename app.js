@@ -29,9 +29,11 @@ mongoose.connect("mongodb://localhost/users", {
 const authLogin = require("./routes/authLogin")
 const authRegister = require("./routes/authRegister")
 const authLogout = require("./routes/authLogout")
+const postsApi = require("./routes/api/posts")
 app.use("/login", authLogin)
 app.use("/register", authRegister)
 app.use("/logout", authLogout)
+app.use("/api/posts", postsApi)
 
 
 app.get("/", middlewear.reqLogin, (req, res, next) => {

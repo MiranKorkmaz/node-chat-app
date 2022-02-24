@@ -6,7 +6,7 @@
         <p> <%= loggedIn.email %>     </p>
         <textarea name="post" id="txt" cols="30" rows="2" maxlength="140" onKeyUp=check() placeholder="What's on your mind?"></textarea>
         <div id=warning></div>
-        <button class="post-button">Post</button>
+        <button id="submitButton">Post</button>
     </div>
 </div>
 <script>
@@ -18,4 +18,5 @@ function check() {
         document.getElementById('warning').innerText = ""
     }
 }
+
 </script>
