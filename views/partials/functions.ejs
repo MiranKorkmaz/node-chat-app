@@ -1,10 +1,21 @@
-<div>
+<div class="post-container">
     <div class="image-container">
         <img src=<%= loggedIn.profilePic %> alt="Profile Picture for logged in user">
     </div>
-    <div>
+    <div class="textarea-container">
         <p> <%= loggedIn.email %>     </p>
-        <textarea name="post" id="post" cols="30" rows="2"></textarea>
-        <button>Post</button>
+        <textarea name="post" id="txt" cols="30" rows="2" maxlength="140" onKeyUp=check() placeholder="What's on your mind?"></textarea>
+        <div id=warning></div>
+        <button class="post-button">Post</button>
     </div>
 </div>
+<script>
+function check() {
+    stringLength = document.getElementById('txt').value.length;
+    if (stringLength >= 140) {
+         document.getElementById('warning').innerText = "Maximum characters are 140"
+    } else {
+        document.getElementById('warning').innerText = ""
+    }
+}
+</script>
