@@ -18,7 +18,7 @@ const postSchema = new mongoose.Schema(
     },
     //Helps to know who created the post
     user: {
-      type: mongoose.Schema.Types.ObjectId, //ObjectId is a reference to another document in the database
+      type: mongoose.Schema.Types.ObjectId, // ObjectId is a reference to another document in the database
       ref: "User", //ref is the name of the collection
     },
   },

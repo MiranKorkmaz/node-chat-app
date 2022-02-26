@@ -14,13 +14,13 @@ router.post("/", async (req, res, next) => {
   if (!req.session.user) {
     return res.redirect("/login");
   }
-  const { _id, firstName, lastName } = req.session.user;
+  const { _id, email } = req.session.user;
   //Destructuring post title from req.body
   const { post } = req.body;
   //Creating new post object
   const newPost = new Post({
     post,
-    postedBy: `${firstName} ${lastName}`,
+    postedBy: `${email}`,
     user: _id,
   });
   //Save new post to database
