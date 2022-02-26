@@ -1,26 +1,26 @@
-<%- include("partials/header.ejs") %> 
-    <form method="POST">
-        <h2>Login Page </h2>
-        <input 
-            type="email" 
-            class="input"
-            name="email"
-            placeholder="Type in email"
-            required
-        />
-        <div class="line-box"><div class="line"></div></div>
-        <input 
-            type="password" 
-            class="input"
-            name="password"
-            placeholder="Type in password"
-            required
-        />
-        <div class="line-box"><div class="line"></div></div>
-        <button class="button" type="submit">
-            Sign in
-        </button>
-        <br>
-        <a href="/register">Create an account!</a>
-    </form>
-<%- include("partials/footer.ejs") %> 
+<%- include("partials/header.ejs") %>
+<!-- Login form for user login -->
+
+<form method="POST" class="login_form">
+  <h2>Login Page</h2>
+  <input
+    type="email"
+    class="input"
+    name="email"
+    placeholder="Type in email"
+    required
+  />
+  <div class="line-box"><div class="line"></div></div>
+  <input
+    type="password"
+    class="input"
+    name="password"
+    placeholder="Type in password"
+    required
+  />
+  <div class="line-box"><div class="line"></div></div>
+  <button class="button" type="submit">Sign in</button>
+  <br />
+  <a href="/register">Create an account!</a>
+</form>
+<%- include("partials/footer.ejs") %>

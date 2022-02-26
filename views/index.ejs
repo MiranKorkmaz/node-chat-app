@@ -1,29 +1,61 @@
-<%- include("partials/header.ejs") %> 
-<%- include("partials/navbar.ejs") %> 
-    <h2>Home Page</h2>
-    <div class="post-container">
-        <div class="image-container">
-            <a href="profile"><img src=<%= loggedIn.profilePic %> alt="Profile Picture for logged in user" id="bird"></a>
-        </div>
-        <div class="textarea-container">
-            <p><a href="profile"> <%= loggedIn.email %>   </a>  </p>
-            <textarea name="post" id="txt" cols="30" rows="2" maxlength="140" onclick=check() placeholder="What's on your mind?"></textarea>
-            <div id=warning></div>
-            <button id="submitButton">Post</button>
-        </div>
-        <div class="wrapper">
-        </div>
-    
+<%- include("partials/header.ejs") %> <%- include("partials/navbar.ejs") %>
+<h2>Home Page</h2>
+<!-- If user logged in then show user photo & email -->
+<div class="post-container">
+  <% if (loggedIn) {%>
+  <div class="image-container">
+    <a href="profile">
+        <img
+        src="<%= loggedIn.profilePic %>"
+        alt="Profile Picture for logged in user"
+        id="Profile pic"
+        />
+    </a>
+  </div>
+  <% } %>
+  <form action="/index" class="textarea-container" method="POST">
+    <% if (loggedIn) {%>
+    <p><a href="profile"> <%= loggedIn.email %> </a></p>
+    <% } %>
+    <textarea
+      name="post"
+      id="txt"
+      cols="30"
+      rows="2"
+      maxlength="140"
+      onclick="check()"
+      placeholder="What's on your mind?">
+    </textarea>
+    <div id="warning"></div>
+    <button id="submitButton">Post</button>
+  </form>
+  <div class="wrapper"></div>
+</div>
+<section class="all-posts">
+  <!-- Show all posts in index page -->
+  <% allPosts.forEach(function(post) { %>
+  <article>
+    <div class="post_image_container">
+        <a href="profile"><img src="<%= post.user.profilePic %>" alt="user_image" /></a>
     </div>
-    <script>
-    function check() {
-        stringLength = document.getElementById('txt').value.length;
-        if (stringLength >= 140) {
-             document.getElementById('warning').innerText = "Maximum characters are 140"
-        } else {
-            document.getElementById('warning').innerText = ""
-        }
+    <h2><%= post.post %></h2>
+    <a href="profile"><h3><i><%= post.postedBy %></i></h3></a>
+    <p>
+      Published at:
+      <span><%= new Date(post.publishedDate).toLocaleString() %></span>
+    </p>
+  </article>
+  <% }) %>
+</section>
+<script>
+  function check() {
+    stringLength = document.getElementById("txt").value.length;
+    if (stringLength >= 140) {
+      document.getElementById("warning").innerText =
+        "Maximum characters are 140";
+    } else {
+      document.getElementById("warning").innerText = "";
     }
-    
-    </script>
-<%- include("partials/footer.ejs") %> 
+  }
+</script>
+<%- include("partials/footer.ejs") %>

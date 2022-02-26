@@ -1,24 +1,32 @@
-const bodyParser = require("body-parser")
-const express = require("express")
-const Post = require("../models/Post")
-const app = express()
-const router = express.Router()
+const bodyParser = require("body-parser");
+const express = require("express");
+const Post = require("../models/Post");
+const app = express();
+const router = express.Router();
 
-let POSTS = []
-
-router.get("/", (req, res, next) => {
-    res.status(200).render("index", {POSTS})
-})
+router.get("/", async (req, res, next) => {
+  //Find all posts
+  const allPosts = await Post.find({});
+  res.status(200).render("index", { allPosts: allPosts });
+});
 
 router.post("/", async (req, res, next) => {
-    const { post_text } = req.body   
-    const today_date = new Date();
-    const date = `${today_date.toLocaleDateString()} at ${today_date.toLocaleTimeString()}`
-    POSTS.push({ post_text, date })
+  if (!req.session.user) {
+    return res.redirect("/login");
+  }
+  const { _id, firstName, lastName } = req.session.user;
+  //Destructuring post title from req.body
+  const { post } = req.body;
+  //Creating new post object
+  const newPost = new Post({
+    post,
+    postedBy: `${firstName} ${lastName}`,
+    user: _id,
+  });
+  //Save new post to database
+  newPost.save();
+  //Redirect to index page
+  res.redirect("/index");
+});
 
-    console.log(entry)
-
-    res.redirect("/index")
-})
-
-module.exports = router
+module.exports = router;

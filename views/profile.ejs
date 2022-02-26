@@ -1,4 +1,81 @@
-<%- include("partials/header.ejs") %> 
-<%- include("partials/navbar.ejs") %> 
-    <h2>Profile</h2>
-<%- include("partials/footer.ejs") %> 
+<%- include("partials/header.ejs") %> <%- include("partials/navbar.ejs") %>
+<h2>Profile</h2>
+<main>
+  <div class="post-container">
+    <div class="image-container">
+      <a href="profile">
+        <!-- Show logged user picture -->
+        <img
+          src="<%= loggedIn.profilePic %>"
+          alt="Profile Picture for logged in user"
+          id="bird"
+      /></a>
+    </div>
+    <form action="/index" class="textarea-container" method="POST">
+      <!-- Show logged user email -->
+      <p><a href="profile"> <%= loggedIn.email %> </a></p>
+      <textarea
+        name="post"
+        id="txt"
+        cols="30"
+        rows="2"
+        maxlength="140"
+        onclick="check()"
+        placeholder="What's on your mind?"
+      ></textarea>
+      <div id="warning"></div>
+      <button id="submitButton">Post</button>
+    </form>
+    <div class="wrapper"></div>
+  </div>
+  <section class="all-posts">
+    <!-- Show all posts that the currently logged in user created -->
+    <% posts.forEach(function(post) { %>
+    <article>
+      <img src="<%= post.user.profilePic %>" alt="user_image" />
+      <h2><%= post.post %></h2>
+      <h3><i><%= post.postedBy %></i></h3>
+      <p>
+        Published at:
+        <span><%= new Date(post.publishedDate).toLocaleString() %></span>
+      </p>
+    </article>
+    <% }) %>
+  </section>
+  <!-- Show form with current user information so that user can edit their information -->
+  <form
+    action="/profile"
+    method="POST"
+    class="update_form"
+    enctype="multipart/form-data"
+  >
+    <div>
+      <label for="firstName">First Name</label>
+      <input
+        type="text"
+        name="firstName"
+        id="firstName"
+        value="<%= user.firstName %>"
+      />
+    </div>
+    <div>
+      <label for="lastName">Last Name</label>
+      <input
+        type="text"
+        name="lastName"
+        id="lastName"
+        value="<%= user.lastName %>"
+      />
+    </div>
+    <div>
+      <label for="email">Email</label>
+      <input type="text" name="email" id="email" value="<%= user.email %>" />
+    </div>
+    <div>
+      <label for="profilePic">Profile Picture</label>
+      <input type="file" name="profilePic" id="profilePic" />
+    </div>
+    <button>Update</button>
+  </form>
+</main>
+<%-include("partials/footer.ejs") %>

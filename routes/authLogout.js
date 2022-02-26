@@ -1,18 +1,18 @@
 const express = require("express");
-const app = express()
-const router = express.Router()
-const bodyParser = require("body-parser")
+const app = express();
+const router = express.Router();
+const bodyParser = require("body-parser");
 
-app.use(bodyParser. urlencoded({extended: false}))
-app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 router.get("/", (req, res, next) => {
-    if(req.session) {
-        req.session.destroy(() => {
-            res.redirect("/login")
-        })
-    }
+  //If user session exists, destroy session and redirect to login page
+  if (req.session) {
+    req.session.destroy(() => {
+      res.redirect("/login");
+    });
+  }
 });
 
-
-module.exports = router
+module.exports = router;
