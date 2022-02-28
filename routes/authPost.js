@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get("/", async (req, res, next) => {
   //Find all posts
-  const allPosts = await Post.find({});
+  const allPosts = await Post.find({}).sort({publishedDate: -1});
   res.status(200).render("index", { allPosts: allPosts });
 });
 
