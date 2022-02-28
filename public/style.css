@@ -5,7 +5,7 @@
 }
 
 body {
-  background-color: #ddd;
+  background-color: rgb(255, 255, 255);
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -16,7 +16,7 @@ body {
   text-align: center;
   background: rgb(255, 255, 255);
   -webkit-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
-  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 12px 10px 10px rgba(0, 0, 0, 0.1);
 }
 ul {
   list-style-type: none;
@@ -126,6 +126,11 @@ li a:hover {
   text-decoration: none;
   display: inline-block;
 }
+.page-header {
+  text-align: center;
+  font-size: 50px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
 
 /* === Basic Styling for profile & index page to show posts in a grid format === */
 .all-posts {
@@ -137,12 +142,12 @@ li a:hover {
 }
 .all-posts article {
   background-color: #fff;
-  border-radius: 8px;
+  border-radius: 8px ;
   padding: 20px;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  box-shadow: rgba(99, 99, 99, 0.2) 12px 12px 2px 1px;
 }
 .all-posts h2 {
-  color: #525252;
+  color: #000000;
 }
 .all-posts h3 {
   margin: 12px 0;
@@ -180,7 +185,7 @@ li a:hover {
   padding: 10px;
   margin: 12px 0;
   border-radius: 8px;
-  background-color: #525252;
+  background-color: #81b8ec;
   color: white;
 }
 .post-button {

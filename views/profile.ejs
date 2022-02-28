@@ -1,5 +1,5 @@
 <%- include("partials/header.ejs") %> <%- include("partials/navbar.ejs") %>
-<h2>Profile</h2>
+<h2 class="page-header">Profile</h2>
 <main>
   <div class="post-container">
     <div class="image-container">
@@ -21,10 +21,10 @@
         rows="2"
         maxlength="140"
         onclick="check()"
-        placeholder="What's on your mind?"
-      ></textarea>
+        placeholder="What's on your mind?">
+      </textarea>
       <div id="warning"></div>
-      <button id="submitButton">Post</button>
+      <button id="submitButton" class="post-button">Post</button>
     </form>
     <div class="wrapper"></div>
   </div>
