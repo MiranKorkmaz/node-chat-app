@@ -5,7 +5,7 @@ const app = express();
 const router = express.Router();
 
 router.get("/", async (req, res, next) => {
-  //Find all posts
+  //Find all posts, sort it by latest post first 
   const allPosts = await Post.find({}).sort({publishedDate: -1});
   res.status(200).render("index", { allPosts: allPosts });
 });
