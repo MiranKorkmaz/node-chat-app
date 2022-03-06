@@ -5,10 +5,19 @@ const router = express.Router();
 const User = require("../models/User");
 const Post = require("../models/Post");
 const bcrypt = require("bcrypt");
+const { ObjectId } = require("mongodb");
 
 router.get("/", async (req, res, next) => {
   //Find post by user id who is logged in
   const userPosts = await Post.find({ user: req.session.user._id });
+  //Render profile page with user info and posts
+  res
+    .status(200)
+    .render("profile", { posts: userPosts, user: req.session.user });
+});
+router.get("/:userId", async (req, res, next) => {
+  //Find post by user id who is logged in
+  const userPosts = await Post.find({ user: req.params.userId });
   //Render profile page with user info and posts
   res
     .status(200)

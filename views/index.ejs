@@ -5,11 +5,11 @@
   <% if (loggedIn) {%>
   <div class="image-container">
     <a href="profile">
-        <img
+      <img
         src="<%= loggedIn.profilePic %>"
         alt="Profile Picture for logged in user"
         id="Profile pic"
-        />
+      />
     </a>
   </div>
   <% } %>
@@ -24,7 +24,8 @@
       rows="2"
       maxlength="140"
       onclick="check()"
-      placeholder="What's on your mind?">
+      placeholder="What's on your mind?"
+    >
     </textarea>
     <div id="warning"></div>
     <button id="submitButton" class="post-button">Post</button>
@@ -36,10 +37,14 @@
   <% allPosts.forEach(function(post) { %>
   <article>
     <div class="post_image_container">
-        <a href="profile"><img src="<%= post.user.profilePic %>" alt="user_image" /></a>
+      <a href="profile"
+        ><img src="<%= post.user.profilePic %>" alt="user_image"
+      /></a>
     </div>
     <h2><%= post.post %></h2>
-    <a href="profile"><h3><i><%= post.postedBy %></i></h3></a>
+    <a href="/profile/<%= post.user._id %>"
+      ><h3><i><%= post.postedBy %></i></h3></a
+    >
     <p>
       Published at:
       <span><%= new Date(post.publishedDate).toLocaleString() %></span>
