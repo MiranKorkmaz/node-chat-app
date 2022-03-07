@@ -21,7 +21,8 @@
         rows="2"
         maxlength="140"
         onclick="check()"
-        placeholder="What's on your mind?">
+        placeholder="What's on your mind?"
+      >
       </textarea>
       <div id="warning"></div>
       <button id="submitButton" class="post-button">Post</button>
@@ -43,6 +44,7 @@
     <% }) %>
   </section>
   <!-- Show form with current user information so that user can edit their information -->
+  <% if (showForm){ %>
   <form
     action="/profile"
     method="POST"
@@ -77,5 +79,6 @@
     </div>
     <button>Update</button>
   </form>
+  <% } %>
 </main>
 <%-include("partials/footer.ejs") %>

@@ -1,32 +1,29 @@
-const bodyParser = require("body-parser");
 const express = require("express");
-const app = express();
 const router = express.Router();
 const User = require("../models/User");
 const Post = require("../models/Post");
-const bcrypt = require("bcrypt");
-const { ObjectId } = require("mongodb");
 
-router.get("/", async (req, res, next) => {
+router.get("/", async (req, res) => {
   //Find post by user id who is logged in
   const userPosts = await Post.find({ user: req.session.user._id });
   //Render profile page with user info and posts
-  res
-    .status(200)
-    .render("profile", { posts: userPosts, user: req.session.user });
+  res.status(200).render("profile", {
+    posts: userPosts,
+    user: req.session.user,
+    showForm: true,
+  });
 });
-router.get("/:userId", async (req, res, next) => {
+router.get("/:userId", async (req, res) => {
   //Find post by user id who is logged in
   const userPosts = await Post.find({ user: req.params.userId });
+  const showForm = req.params.userId === req.session.user._id;
   //Render profile page with user info and posts
   res
     .status(200)
-    .render("profile", { posts: userPosts, user: req.session.user });
+    .render("profile", { posts: userPosts, user: req.session.user, showForm });
 });
 //Handle post request to update profile
 router.post("/", async (req, res, next) => {
-  //Find user by id
-  const userPosts = await Post.find({ user: req.session.user._id });
   //Update user info
   const updateUserObj = {
     ...req.body,

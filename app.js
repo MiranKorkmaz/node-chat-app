@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
@@ -14,7 +15,7 @@ const profilePage = require("./routes/authProfile");
 const posts = require("./routes/authPost");
 
 //Serve public folder statically
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
 //View Engine Setup
 app.set("view engine", "ejs");
 app.set("views", "views");
