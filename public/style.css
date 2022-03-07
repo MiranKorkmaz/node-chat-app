@@ -18,28 +18,40 @@ body {
   -webkit-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
   box-shadow: 12px 10px 10px rgba(0, 0, 0, 0.1);
 }
+
+.login_form p a{
+  text-decoration: none;
+  color: red;
+  margin-top: 10px;
+}
+
+.registration-link {
+  margin-top: 40px;
+}
+
 ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: rgb(82, 82, 82);
+  background-color: rgb(255, 255, 255);
 }
 
 li {
   float: left;
+  color: #000000;
 }
 
 li a {
   display: block;
-  color: white;
+  color: rgb(0, 0, 0);
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
 }
 
 li a:hover {
-  background-color: #111;
+  background-color: #81b8ec;
 }
 
 .input {
@@ -119,17 +131,18 @@ li a:hover {
 
 .post-button {
   border: none;
+  float: right;
   background-color: #965d08;
   color: white;
   padding: 10px 32px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
 }
 .page-header {
   text-align: center;
+  color: #525252;
   font-size: 50px;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 /* === Basic Styling for profile & index page to show posts in a grid format === */
