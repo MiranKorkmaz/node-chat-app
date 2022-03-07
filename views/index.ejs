@@ -37,14 +37,13 @@
   <% allPosts.forEach(function(post) { %>
   <article>
     <div class="post_image_container">
-      <a href="profile"
-        ><img src="<%= post.user.profilePic %>" alt="user_image"
-      /></a>
+      <a href="/profile/<%= post.user._id %>">
+        <img src="<%= post.user.profilePic %>" alt="user_image"/>
+      </a>
     </div>
     <h2><%= post.post %></h2>
-    <a href="/profile/<%= post.user._id %>"
-      ><h3><i><%= post.postedBy %></i></h3></a
-    >
+    <a href="/profile/<%= post.user._id %>">
+      <h3><i><%= post.postedBy %></i></h3></a>
     <p>
       Published at:
       <span><%= new Date(post.publishedDate).toLocaleString() %></span>
