@@ -28,11 +28,8 @@ const userSchema = new mongoose.Schema(
     profilePic: {
       type: String,
       default: "/images/profilePic.jpeg",
-    },
-    following: [{type: ObjectId, ref: "User"}],
-    followers: [{type: ObjectId, ref: "User"}]
-  },
-  { timestamps: true }
+    }
+  }, { timestamps: true }
 );
 
 //Convert plain text password to a hash

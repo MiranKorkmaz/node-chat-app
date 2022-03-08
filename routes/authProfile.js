@@ -42,9 +42,4 @@ router.post("/", async (req, res, next) => {
   res.redirect("/profile");
 });
 
-router.put("follow", (req,res) => {
-  User.findByIdAndUpdate(req.body.followId, {
-    $push:{followers: req.user._id}
-  }, {new: true})
-})
 module.exports = router;
