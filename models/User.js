@@ -29,8 +29,8 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "/images/profilePic.jpeg",
     },
-    following: [{type: Schema.Types.ObjectId, ref: "User"}],
-    followers: [{type: Schema.Types.ObjectId, ref: "User"}]
+    following: [{type: mongoose.Schema.Types.ObjectId, ref: "User"}],
+    followers: [{type: mongoose.Schema.Types.ObjectId, ref: "User"}]
   },
   { timestamps: true }
 );
