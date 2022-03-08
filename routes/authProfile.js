@@ -41,4 +41,10 @@ router.post("/", async (req, res, next) => {
   //Render profile page with updated user info and posts
   res.redirect("/profile");
 });
+
+router.put("follow", (req,res) => {
+  User.findByIdAndUpdate(req.body.followId, {
+    $push:{followers: req.user._id}
+  }, {new: true})
+})
 module.exports = router;
